@@ -20,6 +20,7 @@ class HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: Colors.teal,
           elevation: 50.0,
+          actions: [StyleSwitch(),],
           leading: IconButton(
             icon: Icon(Icons.add),
             tooltip: 'Menu Icon',
@@ -37,13 +38,24 @@ class HomePageState extends State<HomePage> {
         ),
 
         body: Center(
-          child: Switch(
-            value: AppController.instance.isDartTheme,
-            onChanged: (value) {
-              AppController.instance.changeTheme();
-              }),
+          child: StyleSwitch(),
     ),
 
   );
+  }
+}
+
+// Estilo do button switch
+class StyleSwitch extends StatelessWidget {
+  const StyleSwitch({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+        value: AppController.instance.isDartTheme,
+        onChanged: (value) {
+          AppController.instance.changeTheme();
+        }
+    );
   }
 }
